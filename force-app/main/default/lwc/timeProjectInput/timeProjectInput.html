@@ -1,0 +1,20 @@
+<template>
+    <template if:true={readOnly}>
+        {itemValue}
+    </template>
+    <template if:false={readOnly}>
+        <lightning-input 
+            class="dayInput" 
+            onchange={handleOnChange} 
+            name={itemName} 
+            label={itemName}
+            data-index={itemIndex} 
+            idvalue={itemId} 
+            value={itemValue} 
+            maxlength="5" 
+            variant="label-hidden"
+            onkeypress={handleKeyPress}
+            onblur={handleOnBlur}>
+        </lightning-input>
+    </template>
+</template>

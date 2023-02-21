@@ -1,0 +1,12 @@
+.c-container {
+    border: 1px solid #d8dde6;
+    margin: 10px 0 20px 0;
+  }
+  .c-header {
+    text-align: center;
+    background-color: #00bdaa;
+    color: white;
+  }
+  .c-layout-item {
+      border-right: 1px solid #d8dde6;
+  }

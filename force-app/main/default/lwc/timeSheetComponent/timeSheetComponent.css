@@ -1,0 +1,51 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  table{
+    border-spacing: 2em;
+  }
+
+  .bg-green{
+    background-color: grey;
+    color: white;
+  }
+
+  .inputCls{
+    border-radius: 10px;
+    /*margin: 2% 1% 2% 1%;
+    padding : 3%;*/
+  }
+
+  .timeSheetBox{
+    width: 60% !important;
+    margin: 1 auto !important;
+  }
+
+  .iconCls{
+    margin-left: 20%;
+  }
+
+  .submit-Button{
+    margin-right: 20%;
+  }
+
+  .daybgColor{
+    background-color: grey;
+    text-align:center;
+  }
+
+  .thCls{
+    text-align: center;
+  }
+
+  .projectListClass {
+    max-width:150px;
+  }

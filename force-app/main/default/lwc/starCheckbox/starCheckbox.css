@@ -1,0 +1,10 @@
+input {
+    display: none;
+}
+input:checked + label:before {
+    color: yellow;
+}
+input + label:before {
+    content: '\2605';
+    font-size: 24px;
+}

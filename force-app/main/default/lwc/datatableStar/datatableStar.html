@@ -1,0 +1,30 @@
+<template>
+    <template if:false={projectListHasRows}>
+        No Rows to display
+    </template>
+    <template if:true={projectListHasRows}>
+        <div style="width:60% !important;">
+            <table>
+                <tr><th>Favorite</th><th>Project</th><th>checked</th></tr>
+                <template for:each={projectList} for:item="proj" for:index="idx">
+                    <tr key={proj.projectMemberId}>
+                        <td><c-star-checkbox name={proj.projectMemberId} item-checked={proj.favorite} onchange={handleChangeFavorite}></c-star-checkbox></td>
+                        <td>{proj.projectName}</td>
+                        <td>{proj.favorite}</td>
+                    </tr>
+                </template>
+            </table>
+        </div>
+    </template>
+</template>
+<!--
+<template>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={projects.data}
+                columns={columns}>
+        </lightning-datatable>
+    </div> 
+</template>
+-->

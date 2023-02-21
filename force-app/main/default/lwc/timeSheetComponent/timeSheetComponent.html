@@ -1,0 +1,117 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div >
+        
+        <lightning-icon icon-name="utility:connected_apps" alternative-text="Connected" title="Connected">
+        </lightning-icon>
+        <template if:true={loaded}>
+            <lightning-spinner alternative-text="Submitting..."></lightning-spinner>
+        </template>
+        <lightning-tabset variant="scoped" active-tab-value="LogTime">
+            <lightning-tab label="Log Time" value="LogTime" onactive={handleActiveTab}>
+                <div style="width: 60% !important;">
+                    <br><br>
+                    <div>
+                        <h2>Hello {name}!</h2>
+                    </div>
+                    <br><br><br>
+                    <div>
+                        <div class="slds-box timeSheetBox bg-green slds-align_absolute-center"> 
+                            <lightning-button-icon icon-name="utility:chevronleft" 
+                                                    alternative-text="Previous Week" 
+                                                    title="Previous Week"
+                                                    class="slds-m-right_medium lcg-bg-inverse"
+                                                    varient="border-inverse"
+                                                    data-factor="-7"
+                                                    onclick={changeSelectedDate}>
+                            </lightning-button-icon>
+                            Week: {weekStartingDay} - {weekEndingDay}
+                            <lightning-button-icon icon-name="utility:chevronright"
+                                                    alternative-text="Next Week"
+                                                    title="Next Week"
+                                                    class="slds-m-left_medium lcg-bg-inverse"
+                                                    varient="border-inverse"
+                                                    data-factor="7"
+                                                    onclick={changeSelectedDate}>
+
+                            </lightning-button-icon>
+                        </div><br>
+
+
+                        <table >
+                            <tr>
+                                <th class="daybgColor thCls">Projects</th>
+                                <template for:each={dayListArray} for:item="dayVal">
+                                    <th class = "daybgColor thCls" key={dayVal}><lightning-formatted-text key={dayVal} value={dayVal} ></lightning-formatted-text></th>
+                                </template>
+                            </tr>
+                            <tr>
+                                <th></th>                            
+                                <template for:each={dateListArray} for:item="dateVal" for:index="ind">                                  
+                                    <th class="thCls" key={dateVal}><lightning-formatted-text key={dateVal} value={dateVal} ></lightning-formatted-text></th>
+                                </template>
+                            </tr>
+                            <template for:each={projectDataList} for:item="projectVal" for:index="indx">
+                                <tr key={projectVal} id={projectVal}>  
+                                    <template if:true={projectVal.submitted}>
+                                        <td style="width:150px;"><c-time-project-input item-name="projectName" item-index={indx} item-id={projectVal.timesheetId} item-value={projectVal.projectName} read-only={setToReadOnly}></c-time-project-input></td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day1" item-index={indx} item-id={projectVal.day1.idValue} item-value={projectVal.day1.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day2" item-index={indx} item-id={projectVal.day2.idValue} item-value={projectVal.day2.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day3" item-index={indx} item-id={projectVal.day3.idValue} item-value={projectVal.day3.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day4" item-index={indx} item-id={projectVal.day4.idValue} item-value={projectVal.day4.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day5" item-index={indx} item-id={projectVal.day5.idValue} item-value={projectVal.day5.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day6" item-index={indx} item-id={projectVal.day6.idValue} item-value={projectVal.day6.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td style="margin-left:11px;"><c-time-project-input item-name="day7" item-index={indx} item-id={projectVal.day7.idValue} item-value={projectVal.day7.dataValue} ontimeupdated={handleTimeUpdate} read-only={setToReadOnly}></c-time-project-input> </td>
+                                        <td>&nbsp;</td>
+                                    </template>
+                                    <template if:false={projectVal.submitted}>
+                                        <td style="width:150px;"><c-time-project-input item-name="projectName" item-index={indx} item-id={projectVal.timesheetId} item-value={projectVal.projectName} read-only={setToReadOnly}></c-time-project-input></td>
+                                        <td><c-time-project-input item-name="day1" item-index={indx} item-id={projectVal.day1.idValue} item-value={projectVal.day1.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><c-time-project-input item-name="day2" item-index={indx} item-id={projectVal.day2.idValue} item-value={projectVal.day2.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><c-time-project-input item-name="day3" item-index={indx} item-id={projectVal.day3.idValue} item-value={projectVal.day3.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><c-time-project-input item-name="day4" item-index={indx} item-id={projectVal.day4.idValue} item-value={projectVal.day4.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><c-time-project-input item-name="day5" item-index={indx} item-id={projectVal.day5.idValue} item-value={projectVal.day5.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><c-time-project-input item-name="day6" item-index={indx} item-id={projectVal.day6.idValue} item-value={projectVal.day6.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><c-time-project-input item-name="day7" item-index={indx} item-id={projectVal.day7.idValue} item-value={projectVal.day7.dataValue} ontimeupdated={handleTimeUpdate}></c-time-project-input> </td>
+                                        <td><lightning-button-icon alternative-text="Delete" icon-name="utility:delete" onclick={removeTimeSheetEntry} title="Remove" data-index={indx} data-project={projectVal.projectName} data-timesheetid={projectVal.timesheetId} ></lightning-button-icon></td>
+                                    </template>
+                                </tr>
+                            </template>
+                            
+                        </table>
+                        
+                    </div>
+                    <div>
+                        <lightning-combobox
+                                            name="ddlProjectName"
+                                            options={objects}
+                                            onchange={handleProjectChange}
+                                            class="projectListClass">
+                        </lightning-combobox>
+                        <lightning-button label="Add Time Sheet" class="slds-p-around_xxx-small" title="Add Time Sheet" onclick={addTimeSheetEntry} icon-name="utility:add"></lightning-button>
+                        
+                        <template if:true={submitTrue}>
+                            <lightning-button label="Submit" class="slds-float_right submit-Button" onclick={submitTimesheetEntry} variant = "brand" name = "submit"></lightning-button>
+                        </template>
+                        <template if:false={submitTrue}>
+                            <lightning-button label="Submit" disabled class="slds-float_right submit-Button" variant = "brand" name = "submit"></lightning-button>
+                        </template>
+                    </div>
+                    <h1>Total Hours: {TotalHours}</h1>
+                    <br>
+                </div>
+            </lightning-tab>
+            <lightning-tab label="My Time" value="MyTime">
+                <c-datatable-star></c-datatable-star>
+            </lightning-tab>
+            <lightning-tab label="Help" value="Help">
+                <!-- 
+                <c-star-checkbox name="testStar"></c-star-checkbox>
+                <c-time-project-input item-name="Hello" item-index="1" item-id="Dolly" item-value="88" ></c-time-project-input>
+                -->
+                <c-chart country-covid-info="hello"></c-chart>
+            </lightning-tab>
+        </lightning-tabset>
+        
+    </div>
+</template>

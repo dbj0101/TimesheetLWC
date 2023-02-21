@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timesheet_Week_Start</fullName>
+    <active>true</active>
+    <errorConditionFormula>WEEKDAY(Date_Week_Start__c) != 2</errorConditionFormula>
+    <errorMessage>Date Week Start must be a Monday</errorMessage>
+</ValidationRule>

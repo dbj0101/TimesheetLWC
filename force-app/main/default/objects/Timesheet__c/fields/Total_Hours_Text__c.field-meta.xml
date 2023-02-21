@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Hours_Text__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(MFLOOR(Total_Minutes__c/60)) + &quot;:&quot;
++ RIGHT(&quot;0&quot; + TEXT(MOD(Total_Minutes__c, 60)), 2)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Hours Text</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
